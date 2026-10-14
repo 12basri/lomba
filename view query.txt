@@ -1,0 +1,10 @@
+SELECT 
+    p.nomor_urut,
+    p.nama_peserta,
+    p.asal_daerah,
+    SUM(n.nilai) AS total_nilai,
+    AVG(n.nilai) AS rata_rata_nilai
+FROM peserta p
+LEFT JOIN penilaian n ON p.id = n.peserta_id
+GROUP BY p.id, p.nomor_urut, p.nama_peserta, p.asal_daerah
+ORDER BY total_nilai DESC;
